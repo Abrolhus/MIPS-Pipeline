@@ -19,8 +19,8 @@ O simulador deverá possibilitar a execução de programas escritos em código b
 ## Ações
 
 - [x] Leitura e escrita de arquivos
-- [] Menu funcional e com as opções
-- [] Simulador do pipeline da arquitetura MIPS. 
+- [ ] Menu funcional e com as opções
+- [ ] Simulador do pipeline da arquitetura MIPS. 
 
 
 ## Como Compilar?
