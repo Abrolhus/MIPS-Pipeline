@@ -21,6 +21,18 @@ O simulador deverá possibilitar a execução de programas escritos em código b
 - [x] Leitura e escrita de arquivos
 - [ ] Menu funcional e com as opções
 - [ ] Simulador do pipeline da arquitetura MIPS. 
+- [ ] Definir classes para os barramento
+  - [ ] IF_ID
+  - [ ] ID_EX
+  - [ ] EX_MEM
+  - [ ] MEM_WB
+- [ ] Criar funções para cada estágio
+  - [ ] IF
+  - [ ] ID
+  - [ ] EX
+  - [ ] MEM
+  - [ ] WB
+- [ ] Criar classes ALU, BancoDeRegistradores, ...
 
 
 ## Como Compilar?
