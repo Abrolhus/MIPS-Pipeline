@@ -1,7 +1,7 @@
 # Organização de Computadores - Implementação de um Pipeline MIPS
 ## Equipe
 
-`Matrícula       Nome:`
+```Matrícula       Nome:```
 ```
 201965571C      Alemilson Fabiano Silva
 201876043       Deoclécio Porfírio Ferreira Filho
