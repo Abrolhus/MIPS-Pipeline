@@ -23,8 +23,8 @@ O simulador deverá possibilitar a execução de programas escritos em código b
 - [ ] Simulador do pipeline da arquitetura MIPS. 
 - [ ] Definir classes para os barramento
   - [ ] IF_ID
-  - [ ] ID_EX
-  - [ ] EX_MEM
+  - [X] ID_EX
+  - [X] EX_MEM
   - [ ] MEM_WB
 - [ ] Criar funções para cada estágio
   - [ ] IF
