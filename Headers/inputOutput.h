@@ -20,5 +20,7 @@ vector<string> getLines(fstream &input_txt);
 
 // Faz a escrita no arquivo
 void writeReg(fstream &output_txt, string text);
+//abre o arquivo e limpa o conteudo
+void OutputClear(string path);
 
 #endif /* E7978F44_483A_40A3_9307_75393D3E6041 */
