@@ -13,5 +13,5 @@ private:
     int ra;
     int rb;
     int PC_plus_four;
-}
+};
 #endif
