@@ -20,7 +20,11 @@ vector<string> getLines(fstream &input_txt);
 
 // Faz a escrita no arquivo
 void writeReg(fstream &output_txt, string text);
+
 //abre o arquivo e limpa o conteudo
 void OutputClear(string path);
+
+//Copia os dados para o vetor memoria de instruções;
+int memorInstrucInput(int* memInst, int j);
 
 #endif /* E7978F44_483A_40A3_9307_75393D3E6041 */

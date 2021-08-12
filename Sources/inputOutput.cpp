@@ -37,14 +37,19 @@ vector<string> inputFile(string path)
   }
   else
   {
-      //Le os dados do arquivo
+    //Le os dados do arquivo
     vector<string> lines = getLines(input_txt);
     cout << "\nLeitura realizada com sucesso!\n";
     input_txt.close();
     return lines;
   }
 }
-//abre o arquivo e limpa o conteudo
+
+/**
+ * @brief abre o arquivo e limpa o conteudo
+ * 
+ * @param path 
+ */
 void OutputClear(string path)
 {
   //declara ponteiro para os arquivos
@@ -54,6 +59,12 @@ void OutputClear(string path)
   output_txt.close();
 }
 
+/**
+ * @brief 
+ * 
+ * @param path 
+ * @param text 
+ */
 void OutputFile(string path, string text)
 {
   //declara ponteiro para os arquivos
@@ -71,7 +82,7 @@ void OutputFile(string path, string text)
   else
   {
     //escreve os dados no arquivo
-    output_txt << text<<endl;
+    output_txt << text << endl;
     output_txt.close();
   }
 }
@@ -93,4 +104,30 @@ vector<string> getLines(fstream &input_txt)
     lines.push_back(lineString);
   }
   return lines;
+}
+
+/**
+ * @brief Copia os dados do arquivo txt para memória de instrução.
+ * 
+ */
+int memorInstrucInput(int* memInst, int j)
+{
+ 
+  string fileIn = "input.txt";
+  vector<string> lines = inputFile(fileIn);
+
+  for (size_t i = 0; i < lines.size(); i++)
+  {
+    memInst[i] = stol(lines[i], nullptr, 2);
+    //cout << memInst[i] << endl;
+  }
+
+//copia os dados da memória de instrução para o arqquivo (temporário)
+  string fileOut = "output.txt";
+  OutputClear(fileOut);
+  for (size_t i = 0; i < 11; i++)
+    OutputFile(fileOut, to_string(memInst[i]));
+return memInst[j];
+
+  //delete[] mem_Instrucao;
 }
