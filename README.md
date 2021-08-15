@@ -34,7 +34,8 @@ O simulador deverá possibilitar a execução de programas escritos em código b
   - [ ] EX
   - [ ] MEM
   - [ ] WB
-- [X] Criar função de leitura de string para binário 
+- [X] Criar função de leitura de string para binário. 
+- [X] Criar funções para as máscaras dos formatos de 32 bits. 
 - [ ] Criar classes ALU, BancoDeRegistradores, ...
 
 
