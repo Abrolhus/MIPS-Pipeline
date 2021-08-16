@@ -9,7 +9,7 @@
 struct OpCodes
 {
     int r = 0b0;
-    int addi = 0b00100;
+    int addi = 0b1000;
     int lw = 0b100011;
     int sw = 0b1010011;
     int beq = 0b000100;
@@ -27,5 +27,8 @@ int getShamt( int inst);
 int getFunc( int inst);
 int getImmed( int inst);
 int getImmedJ( int inst);
+void verificaOpcod(int op);
+void LeInstrucoes(int *t, int i);
+void imprimeInst(int *t, int i);
 
 #endif //MIPS_PIPELINE_STAGES_H

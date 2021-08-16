@@ -68,7 +68,6 @@ void OutputFile(string path, string text)
 {
   //declara ponteiro para os arquivos
   fstream output_txt;
-
   //abre o arquivo
   output_txt.open(path, ios::out | ios::app);
 
@@ -109,24 +108,23 @@ vector<string> getLines(fstream &input_txt)
  * @brief Copia os dados do arquivo txt para memória de instrução.
  * 
  */
-int memorInstrucInput(int* memInst, int j)
+int memorInstrucInput(int *memInst, int j)
 {
- 
+
   string fileIn = "input.txt";
   vector<string> lines = inputFile(fileIn);
 
   for (size_t i = 0; i < lines.size(); i++)
   {
     memInst[i] = stol(lines[i], nullptr, 2);
-    //cout << memInst[i] << endl;
   }
 
-//copia os dados da memória de instrução para o arqquivo (temporário)
+  //copia os dados da memória de instrução para o arqquivo (temporário)
   string fileOut = "output.txt";
   OutputClear(fileOut);
   for (size_t i = 0; i < 11; i++)
     OutputFile(fileOut, to_string(memInst[i]));
-return memInst[j];
+  return memInst[j];
 
   //delete[] mem_Instrucao;
 }

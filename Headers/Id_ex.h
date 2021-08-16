@@ -1,10 +1,9 @@
-#ifndef ID_EX_H
-#define ID_EX_H
+#ifndef ADF3CD5D_07E6_4B8E_ACB4_7290C9CDE0A1
+#define ADF3CD5D_07E6_4B8E_ACB4_7290C9CDE0A1
 
 #include <iostream>
 
-
-class Id_ex
+class ID_EX
 {
 private:
     int rd_index;
@@ -15,8 +14,8 @@ private:
     int PC_plus_four;
 
 public:
-    Id_ex(int rd_index, int immediate, int offset, int ra, int rb, int PC_plus_four);
-    ~Id_ex();
+    ID_EX(int rd_index, int immediate, int offset, int ra, int rb, int PC_plus_four);
+    ~ID_EX();
 };
 
-#endif
+#endif /* ADF3CD5D_07E6_4B8E_ACB4_7290C9CDE0A1 */
