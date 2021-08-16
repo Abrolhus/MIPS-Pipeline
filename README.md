@@ -27,8 +27,8 @@ O simulador deverá possibilitar a execução de programas escritos em código b
   - [X] IF_ID
   - [X] ID_EX
   - [X] EX_MEM
-  - [ ] MEM_WB
-- [ ] Criar funções para cada estágio
+  - [X] MEM_WB
+  - [ ] Criar funções para cada estágio
   - [ ] IF
   - [ ] ID
   - [ ] EX
