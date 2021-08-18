@@ -1,65 +1,11 @@
 #include <iostream>
 #include <fstream>
 #include "stages.h"
-#include "IF_ID.h"
+
 #define R_TYPE 0
 
 using namespace std;
 
-int getOpCode(int inst)
-{
-    int opCode = inst >> 26;
-    return opCode;
-}
-
-int getRS(int inst)
-{
-    int t = 0b000011111000000000000000000000;
-    int rs = (inst & t) >> 21;
-    return rs;
-}
-
-int getRT(int inst)
-{
-    int t = 0b000000000111110000000000000000;
-    int rt = (inst & t) >> 16;
-    return rt;
-}
-
-int getRD(int inst)
-{
-    int t = 0b000000000000001111100000000000;
-    int rd = (inst & t) >> 11;
-    return rd;
-}
-
-int getShamt(int inst)
-{
-    int t = 0b000000000000000000011111000000;
-    int shamt = (inst & t) >> 6;
-    return shamt;
-}
-
-int getFunc(int inst)
-{
-    int t = 0b000000000000000000000000111111;
-    int func = (inst & t);
-    return func;
-}
-
-int getImmed(int inst)
-{
-    int t = 0b000000000000001111111111111111;
-    int immed = (inst & t);
-    return immed;
-}
-
-int getImmedJ(int inst)
-{
-    int t = 0b000011111111111111111111111111;
-    int immedj = (inst & t);
-    return immedj;
-}
 
 /**
  * @brief 
@@ -71,7 +17,7 @@ void verificaOpcod(int op)
     OpCodes *opcode = new OpCodes();
     switch (op)
     {
-    case 0b0000: // add - 0
+    case 0b0000: // add/sub - 0
         /* code */
         break;
     case 0b1000: // addi - 8
@@ -86,7 +32,7 @@ void verificaOpcod(int op)
     case 0b000100: // beq - 4
         /* code */
         break;
-    case 0b000101: // bne -5
+    case 0b000101: // bne - 5
         /* code */
         break;
     case 0b000010: // j - 2
@@ -101,32 +47,51 @@ void verificaOpcod(int op)
     }
 }
 
-void LeInstrucoes(int *t, int i)
+string verificaFunct(int funct)
 {
-    cout << "\nLinha: " << i
-         << "\nOPCODE " << getOpCode(t[i]) << endl
-         << "RS " << getRS(t[i]) << endl
-         << "RT " << getRT(t[i]) << endl
-         << "RD " << getRD(t[i]) << endl
-         << "SHAMT " << getShamt(t[i]) << endl
-         << "FUNC " << getFunc(t[i]) << endl
-         << "IMED " << getImmed(t[i]) << endl
-         << "IMEDJ " << getImmedJ(t[i]) << endl;
-}
-
-void imprimeInst(int *t, int i)
-{
-    fstream output_txt;
-    string path = "output.txt";
-    output_txt.open(path, ios::out | ios::app);
-
-    output_txt << "\nLinha: " << i
-               << "\nOPCODE " << getOpCode(t[i]) << endl
-               << "RS " << getRS(t[i]) << endl
-               << "RT " << getRT(t[i]) << endl
-               << "RD " << getRD(t[i]) << endl
-               << "SHAMT " << getShamt(t[i]) << endl
-               << "FUNC " << getFunc(t[i]) << endl
-               << "IMED " << getImmed(t[i]) << endl
-               << "IMEDJ " << getImmedJ(t[i]) << endl;
+    string f;
+    switch (funct)
+    {
+    case 32:        //100000
+        f = "add";
+        break;
+    case 34:        //100010
+        f = "sub";
+        break;
+    case 36:        //100100
+        f = "and";
+        break;
+    case 37:        //100101
+        f = "or";
+        break;
+    case 42:          //101010
+        f = "slt";
+        break;
+    case 0:           //000000
+        f = "sll";
+        break;
+    case 35:            //100011
+        f = "lw";
+        break;
+    case 43:            //101011
+        f = "sw";
+        break;
+    case 4:             //000100
+        f = "beq";
+        break;
+    case 5:             //000101
+        f = "bne";
+    case 2:             //000010
+        f = "j";
+    case 8:             //001000
+        f = "jr";
+    case 3:              //000011
+        f = "jal";
+        break;
+    default:
+        cout << "\nFunction não cadastrado.\n";
+        break;
+    }
+return f;
+   
 }

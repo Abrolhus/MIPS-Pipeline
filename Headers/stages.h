@@ -4,8 +4,9 @@
 
 #ifndef MIPS_PIPELINE_STAGES_H
 #define MIPS_PIPELINE_STAGES_H
+#include <string>
 
-//typedef int uint;
+using namespace std;
 struct OpCodes
 {
     int r = 0b0;
@@ -19,16 +20,8 @@ struct OpCodes
     //uint jr = 0b000000;
 };
 
-int getOpCode( int inst);
-int getRS( int inst);
-int getRT( int inst);
-int getRD( int inst);
-int getShamt( int inst);
-int getFunc( int inst);
-int getImmed( int inst);
-int getImmedJ( int inst);
 void verificaOpcod(int op);
-void LeInstrucoes(int *t, int i);
-void imprimeInst(int *t, int i);
+string verificaFunct(int funct);
+
 
 #endif //MIPS_PIPELINE_STAGES_H

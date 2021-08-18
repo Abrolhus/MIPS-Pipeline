@@ -2,11 +2,19 @@
 #ifndef IF_ID_H
 #define IF_ID_H
 #include <string>
-#define MEMINST 128
+#include <stdio.h>
+#include <string.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <istream>
+#include <streambuf>
+#include <vector>
+using namespace std;
+#define MEM_INST 128
 class IF_ID
 {
 private:
-    int i;
     int pc;
     int *memInst;
 
@@ -14,13 +22,25 @@ public:
     IF_ID();
     ~IF_ID();
 
-    int getPc();
+    int getPc(int p);
     int getInstrucoes();
-    int* CriaMemoInstruc();
+    int *CriaMemoInstruc();
     void imprimeMemoInst();
     int sizePC();
+    int getOpCode(int inst);
+    int getRS(int inst);
+    int getRT(int inst);
+    int getRD(int inst);
+    int getShamt(int inst);
+    int getFunct(int inst);
+    int getImmed(int inst);
+    int getImmedJ(int inst);
+    void printInstrucoes(int *inst, int i);
+    void gravaTXT_Inst(int *inst, int i);
+    void printIFID(string menInst,int p);
+    void gravaTXT_IFID(string menInst,int p);
+    string getMemInst(int funct);
+    void estagio_IF_ID(int *inst, int i);
 };
-
-
 
 #endif /* E692F662_A688_4B93_93F3_E36C6D8610E2 */
