@@ -1,40 +1,34 @@
-#ifndef ADF3CD5D_07E6_4B8E_ACB4_7290C9CDE0A1
-#define ADF3CD5D_07E6_4B8E_ACB4_7290C9CDE0A1
-
-#define BCO_REGIS 8
+#ifndef D129B876_CC2B_4BE7_B67B_7DDB27132427
+#define D129B876_CC2B_4BE7_B67B_7DDB27132427
+#include <string>
+#include <stdio.h>
+#include <string.h>
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <istream>
+#include <streambuf>
+#include <vector>
+#include "IF_ID.h"
+//#define BCO_REGIS 32
+
+using namespace std;
 
 class ID_EX
 {
 private:
-int *bcoRegis;
-int rdRegis1;
-int rdRegis2;
-int rdData1;
-int rdData2;
-bool muxID = false;
-int wrRegis;
-int wrData;
+    int *bcoRegis;
+    int writeData;
+    int writeRegis;
 
 public:
     ID_EX();
     ~ID_EX();
-    int LeBancoRegist(int readRegis1, int readRegis2, int &readData1, int &readData2);
+    void carregaBcoRegis(int r1, int r2);
+    void printBcoRegis();
+    void gravaTXT_BcoRegis();
+    int leBancoRegist(int rdRegis1, int rdRegis2, int &rdData1, int &rdData2);
+    void estagio_ID_EX(IF_ID &ifid,int r1, int r2, int *inst, int i);
 };
 
-// class ID_EX
-// {
-// private:
-//     int rd_index;
-//     int immediate;
-//     int offset;
-//     int ra;
-//     int rb;
-//     int PC_plus_four;
-
-// public:
-//     ID_EX(int rd_index, int immediate, int offset, int ra, int rb, int PC_plus_four);
-//     ~ID_EX();
-// };
-
-#endif /* ADF3CD5D_07E6_4B8E_ACB4_7290C9CDE0A1 */
+#endif /* D129B876_CC2B_4BE7_B67B_7DDB27132427 */

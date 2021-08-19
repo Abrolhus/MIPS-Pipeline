@@ -1,4 +1,3 @@
-
 #ifndef IF_ID_H
 #define IF_ID_H
 #include <string>
@@ -10,8 +9,9 @@
 #include <istream>
 #include <streambuf>
 #include <vector>
-using namespace std;
 #define MEM_INST 128
+
+using namespace std;
 class IF_ID
 {
 private:
@@ -39,7 +39,6 @@ public:
     void gravaTXT_Inst(int *inst, int i);
     void printIFID(string menInst,int p);
     void gravaTXT_IFID(string menInst,int p);
-    string getMemInst(int funct);
     void estagio_IF_ID(int *inst, int i);
 };
 

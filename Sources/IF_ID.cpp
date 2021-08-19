@@ -26,27 +26,24 @@ IF_ID::IF_ID()
  */
 IF_ID::~IF_ID()
 {
-
     delete[] memInst;
-    cout << "\ndestruiu IFID" << endl;
+    cout << "destruiu IF_ID" << endl;
 };
 
 int IF_ID::getPc(int i)
 {
-    return (pc + 4) * i;
+    return (4*i)+4;
 }
 
 int *IF_ID::CriaMemoInstruc()
 {
-    //IFID *ifid = new IFID();
-
     string fileIn = "input.txt";
     vector<string> lines = inputFile(fileIn);
 
     for (size_t i = 0; i < lines.size(); i++)
     {
         memInst[i] = stol(lines[i], nullptr, 2); // passa de binário para inteiro
-        this->pc = this->pc;
+        this->pc++;
     }
 
     return memInst;
@@ -149,32 +146,69 @@ void IF_ID::gravaTXT_Inst(int *inst, int i)
                << "FUNCT " << getFunct(inst[i]) << endl
                << "IMED " << getImmed(inst[i]) << endl
                << "IMEDJ " << getImmedJ(inst[i]) << endl;
+    output_txt.close();
 }
 
-string IF_ID::getMemInst(int funct)
-{
-    string menInst = verificaFunct(funct);
-
-    return menInst;
-}
-
+/**
+ * @brief 
+ * 
+ * @param menInst 
+ * @param i 
+ */
 void IF_ID::printIFID(string menInst, int i)
 {
-    cout << "\n *** IFID ***\n "
-         << "\nInstrução: " << menInst
-         << "\nPC: " << this->getPc(i) << endl;
+    cout << "\n\t\t *** IF_ID ***\n "
+         << "\n\tInstrução: " << menInst
+         << "\n\tPC: " << this->getPc(i) << endl;
 }
+
+/**
+ * @brief 
+ * 
+ * @param menInst 
+ * @param i 
+ */
 void IF_ID::gravaTXT_IFID(string menInst, int i)
 {
     fstream saidaTxt("saida.txt", ios::out | ios::app);
-    saidaTxt << "\n *** IFID ***\n"
-             << "\nInstrução: " << menInst
-             << "\nPC: " << this->getPc(i) << endl;
+    saidaTxt << "\n\t\t *** IF_ID ***\n"
+             << "\n\tInstrução: " << menInst
+             << "\n\tPC: " << this->getPc(i) << endl;
     saidaTxt.close();
 }
+
+
+/**
+ * @brief 
+ * 
+ * @param inst 
+ * @param i 
+ */
 void IF_ID::estagio_IF_ID(int *inst, int i)
 {
-    string menInst = verificaFunct(this->getFunct(inst[i])) + " rs: " + to_string(this->getRS(inst[i])) + " rt: " + to_string(this->getRT(inst[i]));
+    string func, rs, rt, rd, temp, imed, imedJ;
+    if (this->getOpCode(inst[i]) == 0)
+        func = verificaFunct(this->getFunct(inst[i]));
+    else
+        func = verificaOpcod(this->getOpCode(inst[i]));
+
+    rs = " rs: " + to_string(getRS(inst[i]));
+    rt = " rt: " + to_string(getRT(inst[i]));
+    rd = " rd: " + to_string(getRD(inst[i]));
+    imed = " immed: " + to_string(getImmed(inst[i]));
+    imedJ = " immedJ: " + to_string(getImmedJ(inst[i]));
+
+    if (this->getOpCode(inst[i]) == 0)
+        temp = rd;
+    else if (this->getOpCode(inst[i]) >= 2 && getOpCode(inst[i]) <= 3)
+    {
+        temp = imedJ;
+        rs = rt = " ";
+    }
+    else
+        temp = imed;
+
+    string menInst = func + rs + rt + temp;
     this->printIFID(menInst, i);
     this->gravaTXT_IFID(menInst, i);
 }

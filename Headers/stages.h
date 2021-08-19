@@ -20,7 +20,7 @@ struct OpCodes
     //uint jr = 0b000000;
 };
 
-void verificaOpcod(int op);
+string verificaOpcod(int op);
 string verificaFunct(int funct);
 
 
