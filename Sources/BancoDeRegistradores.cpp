@@ -13,5 +13,7 @@ int BancoDeRegistradores::read(int reg) const {
     return this->regs.at(reg);
 }
 void BancoDeRegistradores::write(int reg, int word) {
-    this->regs.at(reg) = word;
+    if(reg != 0){ // the $zero register is constant
+        this->regs.at(reg) = word;
+    }
 }
