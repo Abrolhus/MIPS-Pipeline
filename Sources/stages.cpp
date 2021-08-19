@@ -7,9 +7,9 @@
 using namespace std;
 
 /**
- * @brief 
- * 
- * @param op 
+ * @brief
+ *
+ * @param op
  */
 string verificaOpcod(int op)
 {

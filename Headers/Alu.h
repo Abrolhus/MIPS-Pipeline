@@ -11,15 +11,15 @@
 #define CI_SLT 0b0111
 class Alu {
 public:
-    static int act(int A, int B, int controlInput, int& zeroFlag) const;
+    static int act(int A, int B, int controlInput, int& zeroFlag);
 private:
-    add_f(int a, int b);
-    sub_f(int a, int b);
-    and_f(int a, int b);
-    or_f(int a, int b);
-    slt_f(int a, int b);
-    addi_f(int a, int b);
-    sll_f(int a, int b);
+    static int add_f(int a, int b);
+    static int sub_f(int a, int b);
+    static int and_f(int a, int b);
+    static int or_f(int a, int b);
+    static int slt_f(int a, int b);
+    static int addi_f(int a, int b);
+    static int sll_f(int a, int b);
 };
 
 #endif //PIPELINE_ALU_H

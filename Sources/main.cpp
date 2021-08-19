@@ -5,8 +5,8 @@
 #include <string>
 #include "inputOutput.h"
 #include "IF_ID.h"
-#include "ID_EX.h"
-#include "EX_MEM.h"
+#include "Id_ex.h"
+#include "Ex_mem.h"
 #include "MEM_WD.h"
 #include "stages.h"
 

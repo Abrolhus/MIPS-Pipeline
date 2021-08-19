@@ -9,9 +9,9 @@
 
 class BancoDeRegistradores {
 public:
-    BancoDeRegistradores(size=32);
+    BancoDeRegistradores(int size=32);
     int read(int reg) const;
-    write(int reg, int word);
+    void write(int reg, int word);
 private:
     std::vector<int>* regs;
 };

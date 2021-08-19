@@ -4,7 +4,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include "ID_EX.h"
+#include "Id_ex.h"
 #include "IF_ID.h"
 #include "stages.h"
 #define BCO_REGIS 32
@@ -45,11 +45,11 @@ void ID_EX::gravaTXT_BcoRegis()
 }
 
 /**
- * @brief 
- * 
- * @param rdRegis1 
- * @param rdRegis2  
- * @return int 
+ * @brief
+ *
+ * @param rdRegis1
+ * @param rdRegis2
+ * @return int
  */
 int ID_EX::leBancoRegist(int rdRegis1, int rdRegis2, int &rdData1, int &rdData2)
 {
