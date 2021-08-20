@@ -22,6 +22,8 @@ struct OpCodes
 
 string verificaOpcod(int op);
 string verificaFunct(int funct);
+int verificaAluControl(int funct);
+int convDecimal(int bin);
 
 
 #endif //MIPS_PIPELINE_STAGES_H

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "stages.h"
+#include <math.h>
 
 #define R_TYPE 0
 
@@ -16,8 +17,8 @@ string verificaOpcod(int op)
     string code;
     switch (op)
     {
-    case 0b0000: // add/sub -  0 - Tipo R
-         code = "add/sub/jr/and/or";
+    case 0b0000: // Tipo R
+         code = "R";
         break;
     case 0b1000: // addi - 8
         code = "addi";
@@ -95,3 +96,45 @@ string verificaFunct(int funct)
     }
     return f;
 }
+int verificaAluControl(int funct)
+{
+    int control;
+    switch (funct)
+    {
+    case 32:            //100000
+        control = 0b10; //"add";
+        break;
+    case 34:            //100010
+        control = 0110; // "sub";
+        break;
+    case 36:            //100100
+        control = 0000; //"and";
+        break;
+    case 37:            //100101
+        control = 0001; //"or";
+        break;
+    case 42:            //101010
+        control = 0111; //"slt";
+        break;
+    case 25:            //
+        control = 1100; //"NOR";
+        break;
+    default:
+        cout << "\nFunction não cadastrado.\n";
+        break;
+    }
+
+    return control;
+}
+
+int convDecimal(int bin)
+{
+    int dec;
+        for(int i = 0; bin > 0; i++)
+    {
+        dec = dec + pow(2, i) * (bin % 10);
+        bin = bin / 10;
+    }
+    return dec;
+}
+

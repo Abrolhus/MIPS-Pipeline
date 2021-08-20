@@ -10,27 +10,34 @@
 #define BCO_REGIS 32
 
 using namespace std;
-
+/**
+ * @brief Construct a new id ex::id ex object
+ * 
+ */
 ID_EX::ID_EX()
 {
     this->bcoRegis = new int[BCO_REGIS];
 }
 
+/**
+ * @brief Destroy the id ex::id ex object
+ * 
+ */
 ID_EX::~ID_EX()
 {
     delete[] bcoRegis;
-    cout << "\ndestruiu ID_EX" << endl;
+    cout << "\n\n\nDestroy the ID_EX::ID_EX object" << endl;
 }
 
 void ID_EX::printBcoRegis()
 {
     cout
-        << "\n\t Banco de Registradores\n";
+        << "\n\t\t\b Banco de Registradores\n\n";
 
     for (int i = 0; i < BCO_REGIS; i++)
     {
         this->bcoRegis[i] = 0;
-        cout << this->bcoRegis[i] << endl;
+        cout<<"\t\t\t" << this->bcoRegis[i] << endl;
     }
 }
 
@@ -38,9 +45,9 @@ void ID_EX::gravaTXT_BcoRegis()
 {
     fstream saidaTxt("saida.txt", ios::out | ios::app);
 
-    saidaTxt << "\n\t    Banco de Registradores\n";
-    for (size_t i = 0; i < BCO_REGIS; i++)
-        saidaTxt << this->bcoRegis[i] << endl;
+    saidaTxt << "\n\t\tBanco de Registradores\n\n";
+    for (int i = 0; i < BCO_REGIS; i++)
+        saidaTxt<<"\t\t\t" << this->bcoRegis[i] << endl;
     saidaTxt.close();
 }
 
@@ -73,12 +80,18 @@ void ID_EX::estagio_ID_EX(IF_ID &ifid, int r1, int r2, int *inst, int i)
 {
     string func, rd, temp, imed, imedJ;
 
-    if (ifid.getOpCode(inst[i]) == 0) // TIPO r
+    if (ifid.getOpCode(inst[i]) == 0) // TIPO R
         func = verificaFunct(ifid.getFunct(inst[i]));
     else
         func = verificaOpcod(ifid.getOpCode(inst[i]));
 
-    this->writeRegis = (ifid.getRD(inst[i]));
+    if (ifid.getOpCode(inst[i]) == 0) // Mux write Register
+        this->writeRegis = (ifid.getRD(inst[i]));
+    else if (func == "lw")
+        this->writeRegis = (ifid.getRT(inst[i]));
+        else 
+        this->writeRegis = atoi("nop ");
+
     imed = " immed: " + to_string(ifid.getImmed(inst[i]));
     imedJ = " immedJ: " + to_string(ifid.getImmedJ(inst[i]));
 
@@ -90,18 +103,20 @@ void ID_EX::estagio_ID_EX(IF_ID &ifid, int r1, int r2, int *inst, int i)
         temp = imed;
 
     cout << "\n\t\t *** ID_EX ***\n "
-         << "\n\t\tINSTRUÇÃO: " << func
-         << "\n\t\tPC: " << ifid.getPc(i)
-         << "\n\t\tREG_DATA1: " << r1
-         << "\n\t\tREG_DATA2: " << r2
-         << "\n\t\tWRITE_REGIS: " << this->writeRegis << endl;
+         << "\n\t\tINSTRUÇÃO:      " << func
+         << "\n\t\tPC:             " << ifid.getPc(i)
+         << "\n\t\tREG_DATA1:      " << r1
+         << "\n\t\tREG_DATA2:      " << r2
+         << "\n\t\tWRITE_REGISTER: " << this->writeRegis 
+         << "\n\t\tWRITE_DATA:     " << " " << endl;
 
     fstream saidaTxt("saida.txt", ios::out | ios::app);
     saidaTxt << "\n\t\t *** ID_EX ***\n "
-             << "\n\t\tINSTRUÇÃO: " << func
-             << "\n\t\tPC: " << ifid.getPc(i)
-             << "\n\t\tREG_DATA1: " << r1
-             << "\n\t\tREG_DATA2: " << r2
-             << "\n\t\tWRITE_REGIS: " << this->writeRegis << endl;
+             << "\n\t\tINSTRUÇÃO:      " << func
+             << "\n\t\tPC:             " << ifid.getPc(i)
+             << "\n\t\tREG_DATA1:      " << r1
+             << "\n\t\tREG_DATA2:      " << r2
+             << "\n\t\tWRITE_REGISTER: " << this->writeRegis
+             << "\n\t\tWRITE_DATA: " << " " << endl;
     saidaTxt.close();
 }

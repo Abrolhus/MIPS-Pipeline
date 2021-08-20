@@ -13,6 +13,13 @@ MEM_WD::MEM_WD(/* args */)
     
 }
 
+/**
+ * @brief Destroy the mem wd::mem wd object
+ * 
+ */
 MEM_WD::~MEM_WD()
 {
+
+     cout << "Destroy the mem MEM_WD::MEM_WD wd object" << endl;
+
 }

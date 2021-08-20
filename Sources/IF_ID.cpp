@@ -27,12 +27,12 @@ IF_ID::IF_ID()
 IF_ID::~IF_ID()
 {
     delete[] memInst;
-    cout << "destruiu IF_ID" << endl;
+    cout << "Destroy the IF_ID::IF_ID object" << endl;
 };
 
 int IF_ID::getPc(int i)
 {
-    return (4*i)+4;
+    return (4 * i) + 4;
 }
 
 int *IF_ID::CriaMemoInstruc()
@@ -65,7 +65,9 @@ int IF_ID::sizePC()
 
 int IF_ID::getOpCode(int inst)
 {
-    int opCode = inst >> 26;
+
+    int opCode = (unsigned int)inst >> 26;
+
     return opCode;
 }
 
@@ -123,12 +125,18 @@ void IF_ID::printInstrucoes(int *inst, int i)
     cout << "\nLinha: " << i
          << "\nOPCODE " << getOpCode(inst[i]) << endl
          << "RS " << getRS(inst[i]) << endl
-         << "RT " << getRT(inst[i]) << endl
-         << "RD " << getRD(inst[i]) << endl
-         << "SHAMT " << getShamt(inst[i]) << endl
-         << "FUNC " << getFunct(inst[i]) << endl
-         << "IMED " << getImmed(inst[i]) << endl
-         << "IMEDJ " << getImmedJ(inst[i]) << endl;
+         << "RT " << getRT(inst[i]) << endl;
+
+    if (getOpCode(inst[i]) == 0b0)
+    {
+        cout << "RD " << getRD(inst[i]) << endl;
+        cout << "SHAMT " << getShamt(inst[i]) << endl;
+        cout << "FUNCT " << getFunct(inst[i]) << endl;
+    }
+    else if (getOpCode(inst[i]) == 0b10 || getOpCode(inst[i]) == 0b11)
+        cout << "IMEDJ " << getImmedJ(inst[i]) << endl;
+    else
+        cout << "IMED " << getImmed(inst[i]) << endl;
 }
 
 void IF_ID::gravaTXT_Inst(int *inst, int i)
@@ -140,41 +148,18 @@ void IF_ID::gravaTXT_Inst(int *inst, int i)
     output_txt << "\nLinha: " << i
                << "\nOPCODE " << getOpCode(inst[i]) << endl
                << "RS " << getRS(inst[i]) << endl
-               << "RT " << getRT(inst[i]) << endl
-               << "RD " << getRD(inst[i]) << endl
-               << "SHAMT " << getShamt(inst[i]) << endl
-               << "FUNCT " << getFunct(inst[i]) << endl
-               << "IMED " << getImmed(inst[i]) << endl
-               << "IMEDJ " << getImmedJ(inst[i]) << endl;
+               << "RT " << getRT(inst[i]) << endl;
+    if (getOpCode(inst[i]) == 0b0)
+    {
+        output_txt << "RD " << getRD(inst[i]) << endl
+                   << "SHAMT " << getShamt(inst[i]) << endl
+                   << "FUNCT " << getFunct(inst[i]) << endl;
+    }
+    else if (getOpCode(inst[i]) == 0b10 || getOpCode(inst[i]) == 0b11)
+        output_txt << "IMEDJ " << getImmedJ(inst[i]) << endl;
+    else
+        output_txt << "IMED " << getImmed(inst[i]) << endl;
     output_txt.close();
-}
-
-/**
- * @brief 
- * 
- * @param menInst 
- * @param i 
- */
-void IF_ID::printIFID(string menInst, int i)
-{
-    cout << "\n\t\t *** IF_ID ***\n "
-         << "\n\tInstrução: " << menInst
-         << "\n\tPC: " << this->getPc(i) << endl;
-}
-
-/**
- * @brief 
- * 
- * @param menInst 
- * @param i 
- */
-void IF_ID::gravaTXT_IFID(string menInst, int i)
-{
-    fstream saidaTxt("saida.txt", ios::out | ios::app);
-    saidaTxt << "\n\t\t *** IF_ID ***\n"
-             << "\n\tInstrução: " << menInst
-             << "\n\tPC: " << this->getPc(i) << endl;
-    saidaTxt.close();
 }
 
 
@@ -192,11 +177,11 @@ void IF_ID::estagio_IF_ID(int *inst, int i)
     else
         func = verificaOpcod(this->getOpCode(inst[i]));
 
-    rs = " rs: " + to_string(getRS(inst[i]));
-    rt = " rt: " + to_string(getRT(inst[i]));
-    rd = " rd: " + to_string(getRD(inst[i]));
-    imed = " immed: " + to_string(getImmed(inst[i]));
-    imedJ = " immedJ: " + to_string(getImmedJ(inst[i]));
+    rs = to_string(getRS(inst[i]));
+    rt =  to_string(getRT(inst[i]));
+    rd =  to_string(getRD(inst[i]));
+    imed =  to_string(getImmed(inst[i]));
+    imedJ = to_string(getImmedJ(inst[i]));
 
     if (this->getOpCode(inst[i]) == 0)
         temp = rd;
@@ -209,6 +194,43 @@ void IF_ID::estagio_IF_ID(int *inst, int i)
         temp = imed;
 
     string menInst = func + rs + rt + temp;
-    this->printIFID(menInst, i);
-    this->gravaTXT_IFID(menInst, i);
+
+    cout << "\n\t\t *** IF_ID ***\n "
+             << "\n\t\tINSTRUÇÃO: "<< func
+             << "\n\t\tPC:        " <<this->getPc(i) 
+             << "\n\t\tRS:        " << rs
+             << "\n\t\tRT:        " << rt
+             << "\n\t\tRD:        " << temp <<endl;
+
+
+
+    fstream saidaTxt("saida.txt", ios::out | ios::app);
+    saidaTxt << "\n\t\t *** IF_ID ***\n"
+             << "\n\t\tINSTRUÇÃO: "<< func
+             << "\n\t\tPC:        " <<this->getPc(i) 
+             << "\n\t\tRS:        " << rs
+             << "\n\t\tRT:        " << rt
+             << "\n\t\tRD:        " << temp<<endl;
+    saidaTxt.close();
+}
+/**
+ * @brief 
+ * 
+ * @param menInst 
+ * @param i 
+ */
+void IF_ID::printIFID(string menInst, int i)
+{
+
+}
+
+/**
+ * @brief 
+ * 
+ * @param menInst 
+ * @param i 
+ */
+void IF_ID::gravaTXT_IFID(string menInst, int i)
+{
+
 }
