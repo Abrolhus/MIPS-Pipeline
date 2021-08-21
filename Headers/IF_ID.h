@@ -15,8 +15,12 @@ using namespace std;
 class IF_ID
 {
 private:
-    int pc;
-    int *memInst;
+    int pc{};
+    int instruction{};
+public:
+    int getInstruction() const;
+
+    void setInstruction(int instruction);
 
 public:
     IF_ID();
@@ -24,7 +28,7 @@ public:
 
     int getPc(int p);
     int getInstrucoes();
-    int *CriaMemoInstruc();
+    static std::vector<int>* CriaMemoInstruc();
     void imprimeMemoInst();
     int sizePC();
     int getOpCode(int inst);
@@ -40,6 +44,10 @@ public:
     void printIFID(string menInst,int p);
     void gravaTXT_IFID(string menInst,int p);
     void estagio_IF_ID(int *inst, int i);
+
+    int getPc() const;
+
+    void setPc(int pc);
 };
 
 #endif /* E692F662_A688_4B93_93F3_E36C6D8610E2 */

@@ -50,6 +50,9 @@ int main()
     OutputClear("saida.txt");
     int *memInst = new int[32];
 
+    stages();
+    return 1;
+    /*
     //   int inst = memorInstrucInput(memInst, 6);
     //   int t = getOpCode(inst);
     //   cout << getOpCode(inst)<<endl;
@@ -61,7 +64,7 @@ int main()
     MEM_WD *memwd = new MEM_WD();
     Alu *alu = new Alu();
 
-    int *inst = ifid->CriaMemoInstruc();
+    //int *inst = ifid->CriaMemoInstruc();
     cout << "\nGravando instruções...\n";
     for (size_t i = 0; i < ifid->sizePC(); i++)
         cout << inst[i] << endl;
@@ -120,5 +123,6 @@ int main()
     delete memwd;
     delete alu;
     cout << "\nFinalizando programa.\n";
+    */
     return 0;
 }

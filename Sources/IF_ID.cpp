@@ -14,11 +14,7 @@ using namespace std;
  * @brief Construct a new IF_ID::IF_ID object
  * 
  */
-IF_ID::IF_ID()
-{
-    this->pc = 0;
-    this->memInst = new int[MEM_INST];
-}
+IF_ID::IF_ID() = default    ;
 
 /**
  * @brief Destroy the IF_ID::IF_ID object
@@ -26,8 +22,7 @@ IF_ID::IF_ID()
  */
 IF_ID::~IF_ID()
 {
-    delete[] memInst;
-    cout << "Destroy the IF_ID::IF_ID object" << endl;
+    cout << "destruiu IF_ID" << endl;
 };
 
 int IF_ID::getPc(int i)
@@ -35,29 +30,22 @@ int IF_ID::getPc(int i)
     return (4 * i) + 4;
 }
 
-int *IF_ID::CriaMemoInstruc()
+std::vector<int>* IF_ID::CriaMemoInstruc()
 {
     string fileIn = "input.txt";
     vector<string> lines = inputFile(fileIn);
+    auto* memInst = new std::vector<int>();
 
-    for (size_t i = 0; i < lines.size(); i++)
+    for (size_t i = 0; i < lines.size()-2; i++)
     {
-        memInst[i] = stol(lines[i], nullptr, 2); // passa de binário para inteiro
-        this->pc++;
+        //lines[i].pop_back();
+        int val = (int)stol(lines[i], nullptr, 2);
+        memInst->push_back(val); // passa de binário para inteiro
+        //this->pc++;
     }
 
     return memInst;
 }
-
-void IF_ID::imprimeMemoInst()
-{
-
-    for (size_t i = 0; i < sizePC(); i++)
-    {
-        this->memInst[i];
-    }
-}
-
 int IF_ID::sizePC()
 {
     return this->pc;
@@ -162,6 +150,34 @@ void IF_ID::gravaTXT_Inst(int *inst, int i)
     output_txt.close();
 }
 
+/**
+ * @brief 
+ * 
+ * @param menInst 
+ * @param i 
+ */
+void IF_ID::printIFID(string menInst, int i)
+{
+    cout << "\n\t\t *** IF_ID ***\n "
+         << "\n\tInstrução: " << menInst
+         << "\n\tPC: " << this->getPc(i) << endl;
+}
+
+/**
+ * @brief 
+ * 
+ * @param menInst 
+ * @param i 
+ */
+void IF_ID::gravaTXT_IFID(string menInst, int i)
+{
+    fstream saidaTxt("saida.txt", ios::out | ios::app);
+    saidaTxt << "\n\t\t *** IF_ID ***\n"
+             << "\n\tInstrução: " << menInst
+             << "\n\tPC: " << this->getPc(i) << endl;
+    saidaTxt.close();
+}
+
 
 /**
  * @brief 
@@ -197,7 +213,7 @@ void IF_ID::estagio_IF_ID(int *inst, int i)
 
     cout << "\n\t\t *** IF_ID ***\n "
              << "\n\t\tINSTRUÇÃO: "<< func
-             << "\n\t\tPC:        " <<this->getPc(i) 
+             << "\n\t\tPC:        " <<this->getPc(i)
              << "\n\t\tRS:        " << rs
              << "\n\t\tRT:        " << rt
              << "\n\t\tRD:        " << temp <<endl;
@@ -207,30 +223,31 @@ void IF_ID::estagio_IF_ID(int *inst, int i)
     fstream saidaTxt("saida.txt", ios::out | ios::app);
     saidaTxt << "\n\t\t *** IF_ID ***\n"
              << "\n\t\tINSTRUÇÃO: "<< func
-             << "\n\t\tPC:        " <<this->getPc(i) 
+             << "\n\t\tPC:        " <<this->getPc(i)
              << "\n\t\tRS:        " << rs
              << "\n\t\tRT:        " << rt
              << "\n\t\tRD:        " << temp<<endl;
     saidaTxt.close();
 }
 /**
- * @brief 
- * 
- * @param menInst 
- * @param i 
+ * @brief
+ *
+ * @param menInst
+ * @param i
  */
-void IF_ID::printIFID(string menInst, int i)
-{
-
+int IF_ID::getInstruction() const {
+    return instruction;
 }
 
-/**
- * @brief 
- * 
- * @param menInst 
- * @param i 
- */
-void IF_ID::gravaTXT_IFID(string menInst, int i)
-{
-
+void IF_ID::setInstruction(int instruction) {
+    IF_ID::instruction = instruction;
 }
+
+int IF_ID::getPc() const {
+    return pc;
+}
+
+void IF_ID::setPc(int pc) {
+    IF_ID::pc = pc;
+}
+

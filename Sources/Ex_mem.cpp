@@ -4,8 +4,8 @@
 #include <sstream>
 #include <string>
 #include "Ex_mem.h"
-#include "stages.h"
 #include "Alu.h"
+#include "stages.h"
 
 using namespace std;
 
@@ -32,6 +32,30 @@ int EX_MEM::AluControl(int opCode, int funct)
         return 0b110;
 
         return 0;
+}
+
+int EX_MEM::getAluResult() const {
+    return alu_result;
+}
+
+void EX_MEM::setAluResult(int aluResult) {
+    alu_result = aluResult;
+}
+
+int EX_MEM::getOp() const {
+    return op;
+}
+
+void EX_MEM::setOp(int op) {
+    EX_MEM::op = op;
+}
+
+int EX_MEM::getDst() const {
+    return dst;
+}
+
+void EX_MEM::setDst(int dst) {
+    EX_MEM::dst = dst;
 }
 
 // EX_MEM::EX_MEM(int rd_index, int alu_result, int rb):

@@ -12,6 +12,7 @@ public:
     BancoDeRegistradores(int size=32);
     int read(int reg) const;
     void write(int reg, int word);
+    int getSize(){ return this->regs->size();}
 private:
     std::vector<int>* regs;
 };

@@ -2,6 +2,7 @@
 
 Memory::Memory(int size) {
     this->data = new std::vector<int>(size);
+    data->at(0) = 600;
 }
 
 int Memory::getWord(int address, int offset) {

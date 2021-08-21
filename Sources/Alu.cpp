@@ -17,15 +17,6 @@ Alu::Alu()
 }
 
 /**
- * @brief Destroy the Alu:: Alu object
- * 
- */
-Alu::~Alu()
-{
-    cout << "Destroy the Alu::Alu object";
-}
-
-/**
  * @brief 
  * 
  * @param a 

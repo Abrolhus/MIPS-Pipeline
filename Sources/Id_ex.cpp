@@ -12,32 +12,28 @@
 using namespace std;
 /**
  * @brief Construct a new id ex::id ex object
- * 
+ *
  */
 ID_EX::ID_EX()
 {
     this->bcoRegis = new int[BCO_REGIS];
 }
 
-/**
- * @brief Destroy the id ex::id ex object
- * 
- */
 ID_EX::~ID_EX()
 {
     delete[] bcoRegis;
-    cout << "\n\n\nDestroy the ID_EX::ID_EX object" << endl;
+    cout << "\ndestruiu ID_EX" << endl;
 }
 
 void ID_EX::printBcoRegis()
 {
     cout
-        << "\n\t\t\b Banco de Registradores\n\n";
+        << "\n\t Banco de Registradores\n";
 
     for (int i = 0; i < BCO_REGIS; i++)
     {
         this->bcoRegis[i] = 0;
-        cout<<"\t\t\t" << this->bcoRegis[i] << endl;
+        cout << this->bcoRegis[i] << endl;
     }
 }
 
@@ -45,9 +41,9 @@ void ID_EX::gravaTXT_BcoRegis()
 {
     fstream saidaTxt("saida.txt", ios::out | ios::app);
 
-    saidaTxt << "\n\t\tBanco de Registradores\n\n";
-    for (int i = 0; i < BCO_REGIS; i++)
-        saidaTxt<<"\t\t\t" << this->bcoRegis[i] << endl;
+    saidaTxt << "\n\t    Banco de Registradores\n";
+    for (size_t i = 0; i < BCO_REGIS; i++)
+        saidaTxt << this->bcoRegis[i] << endl;
     saidaTxt.close();
 }
 
@@ -89,7 +85,7 @@ void ID_EX::estagio_ID_EX(IF_ID &ifid, int r1, int r2, int *inst, int i)
         this->writeRegis = (ifid.getRD(inst[i]));
     else if (func == "lw")
         this->writeRegis = (ifid.getRT(inst[i]));
-        else 
+        else
         this->writeRegis = atoi("nop ");
 
     imed = " immed: " + to_string(ifid.getImmed(inst[i]));
@@ -107,7 +103,7 @@ void ID_EX::estagio_ID_EX(IF_ID &ifid, int r1, int r2, int *inst, int i)
          << "\n\t\tPC:             " << ifid.getPc(i)
          << "\n\t\tREG_DATA1:      " << r1
          << "\n\t\tREG_DATA2:      " << r2
-         << "\n\t\tWRITE_REGISTER: " << this->writeRegis 
+         << "\n\t\tWRITE_REGISTER: " << this->writeRegis
          << "\n\t\tWRITE_DATA:     " << " " << endl;
 
     fstream saidaTxt("saida.txt", ios::out | ios::app);
@@ -119,4 +115,52 @@ void ID_EX::estagio_ID_EX(IF_ID &ifid, int r1, int r2, int *inst, int i)
              << "\n\t\tWRITE_REGISTER: " << this->writeRegis
              << "\n\t\tWRITE_DATA: " << " " << endl;
     saidaTxt.close();
+}
+
+int ID_EX::getRs() const {
+    return rs;
+}
+
+void ID_EX::setRs(int rs) {
+    ID_EX::rs = rs;
+}
+
+int ID_EX::getRt() const {
+    return rt;
+}
+
+void ID_EX::setRt(int rt) {
+    ID_EX::rt = rt;
+}
+
+int ID_EX::getRd() const {
+    return rd;
+}
+
+void ID_EX::setRd(int rd) {
+    ID_EX::rd = rd;
+}
+
+int ID_EX::getImmed() const {
+    return immed;
+}
+
+void ID_EX::setImmed(int immed) {
+    ID_EX::immed = immed;
+}
+
+int ID_EX::getShamt() const {
+    return shamt;
+}
+
+void ID_EX::setShamt(int shamt) {
+    ID_EX::shamt = shamt;
+}
+
+int ID_EX::getOp() const {
+    return op;
+}
+
+void ID_EX::setOp(int op) {
+    ID_EX::op = op;
 }

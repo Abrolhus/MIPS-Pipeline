@@ -5,6 +5,22 @@ class MEM_WD
 private:
     int writeData;
     int readData;
+    int op;
+    int dst;
+    int data;
+    //int address;
+public:
+    int getOp() const;
+
+    void setOp(int op);
+
+    int getDst() const;
+
+    void setDst(int dst);
+
+    int getData() const;
+
+    void setData(int data);
 
 public:
     MEM_WD();

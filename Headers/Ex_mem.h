@@ -7,24 +7,34 @@
 #include <fstream>
 #include <sstream>
 #include <istream>
-#include "stages.h"
 
 using namespace std;
 class EX_MEM
 {
 private:
-  int rd_index;
-  int *alu_result;
-  int rb; // rb is used if is a memory store operation (i.e. loadWord). In the case of loadword, rb will be the destination register;
-
+   // int rd_index;
+   int alu_result;
+   int op;
+   int dst; // in loadWord: rt;
 public:
-  
-  // EX_MEM(int rd_index, int alu_result, int rb);
-  EX_MEM();
-  ~EX_MEM();
+    int getDst() const;
 
-  int AluControl(int opCode, int funct);
-  
+    void setDst(int dst);
+
+    int getOp() const;
+
+    void setOp(int op);
+
+    int getAluResult() const;
+
+    void setAluResult(int aluResult);
+    // EX_MEM(int rd_index, int alu_result, int rb);
+    EX_MEM();
+    ~EX_MEM();
+
+    int AluControl(int opCode, int funct);
+
 };
+
 
 #endif
